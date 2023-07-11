@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class BoardController {
+    @GetMapping("/board/write") //localhost:8080/board/write
+    public String boardWriteForm(){
 
-    @GetMapping("/")  //8080 경로로 들어오면
-    @ResponseBody // 이 글자들을 띄워줘라.
-    public String main(){
 
-        return "hello world";
+        return "boardWrite";
     }
 }
