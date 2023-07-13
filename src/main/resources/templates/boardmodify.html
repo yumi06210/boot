@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org"> <!-- 타임리프 적용-->
 <head>
     <meta charset="UTF-8">
     <title>게시물 작성 폼</title>
@@ -24,11 +24,11 @@
 <body>
 <div class="layout">
 
-    <form action="/board/writePro" method="post">
-        <input name ="title" type="text">
-        <textarea name="content"></textarea>
+    <form th:action="@{/board/update/{id}(id=${board.id})}" method="post">
+        <input name ="title" type="text" th:value="${board.title}">
+        <textarea name="content" th:text="${board.content}"></textarea>
         <textarea name="time"></textarea>
-        <button type="submit">작성</button>
+        <button type="submit">수정</button>
     </form>
 </div>
 </body>
