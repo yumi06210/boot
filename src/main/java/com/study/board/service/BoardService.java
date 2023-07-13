@@ -16,6 +16,7 @@ public class BoardService {
     public void write(Board board){
         boardRepository.save(board);
     }
+    //return 이 없을때 void 사용
     
     //게시글 리스트
     public List<Board> boardList(){
@@ -25,5 +26,11 @@ public class BoardService {
     //특정게시글 불러오기
     public Board boardView(Integer id){
         return boardRepository.findById(id).get();
+    }
+    
+    //특정게시글 삭제
+    public void boardDelete(Integer id){
+
+        boardRepository.deleteById(id);
     }
 }

@@ -42,4 +42,11 @@ public class BoardController {
         return "boardView";
     }
 
+    @GetMapping("/board/delete")
+    public String boardDelete(Integer id){
+        boardService.boardDelete(id);
+        //삭제하면 리스트 페이지로 감
+        return "redirect:/board/list";
+    }
+
 }
