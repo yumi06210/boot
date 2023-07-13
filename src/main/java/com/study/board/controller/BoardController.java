@@ -66,6 +66,8 @@ public class BoardController {
         Board boardTemp = boardService.boardView(id);  //기존 내용 가지고 오기
         boardTemp.setTitle(board.getTitle()); //새로입력한값을 덮어씌우기
         boardTemp.setContent(board.getContent()); //새로입력한값을 덮어씌우기
+
+        boardService.write(boardTemp);  //이거 빠져서 update 안된거였음
         return "redirect:/board/list";
     }
 }
