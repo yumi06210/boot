@@ -34,6 +34,8 @@ public class BoardController {
     public String boardList(Model model){
         model.addAttribute("list", boardService.boardList());
 
+        
+        //깃 테스트 주석
         return "boardlist";
     }
 }
