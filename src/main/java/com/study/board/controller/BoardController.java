@@ -19,7 +19,6 @@ public class BoardController {
         return "boardWrite";
     }
 
-
     @PostMapping("board/writePro")
     //public String boardWritePro(String title, String content){
     public String boardWritePro(Board board){
@@ -34,8 +33,13 @@ public class BoardController {
     public String boardList(Model model){
         model.addAttribute("list", boardService.boardList());
 
-        
-        //깃 테스트 주석
         return "boardlist";
     }
+
+    @GetMapping("/board/view") //localhost:8080/board/view?id=1
+    public String boardView(Model model,Integer id){
+        model.addAttribute("board", boardService.boardView(id));
+        return "boardView";
+    }
+
 }
