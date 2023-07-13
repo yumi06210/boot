@@ -12,10 +12,12 @@ public class Board {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  //mysql  이니까.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  //mysql  이니까. //컬럼명을 적어주기
 
     private Integer id;
     private String title;
     private String content;
+    private String time;
+    //private String test;
 
 }
