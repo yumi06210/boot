@@ -45,10 +45,14 @@ public class BoardController {
     }
 
     @GetMapping("/board/delete")  //http://localhost:8080/board/delete?id=4 (쿼리스트링)
-    public String boardDelete(Integer id){
+    public String boardDelete(Integer id,Model model){
         boardService.boardDelete(id);
+        model.addAttribute("message", "글 삭제가 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/list");
+        return "message";
+
         //삭제하면 리스트 페이지로 감
-        return "redirect:/board/list";
+        //return "redirect:/board/list";
     }
 
 
@@ -60,13 +64,19 @@ public class BoardController {
     }
 
     @PostMapping("/board/update3/{id}")
-    public String boardUpdate3(@PathVariable("id") Integer id, Board board){  //update u 대문자 아니면 수정이 안된다.
+    public String boardUpdate3(@PathVariable("id") Integer id, Board board, Model model){  //update u 대문자 아니면 수정이 안된다.
 
         Board boardTemp = boardService.boardView(id);  //기존 내용 가지고 오기
         boardTemp.setTitle(board.getTitle()); //새로입력한값을 덮어씌우기
         boardTemp.setContent(board.getContent()); //새로입력한값을 덮어씌우기
 
         boardService.write(boardTemp);  //이거 빠져서 update 안된거였음
-        return "redirect:/board/list";
+
+        model.addAttribute("message", "글 수정이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/list");
+        return "message";
+
+
+        //return "redirect:/board/list";
     }
 }
