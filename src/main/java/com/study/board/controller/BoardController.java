@@ -22,14 +22,11 @@ public class BoardController {
         return "boardWrite";
     }
 
-    @PostMapping("board/writePro")
-    //public String boardWritePro(String title, String content){
-    public String boardWritePro(Board board){
+    @PostMapping("/board/writePro4")
+    public String boardWritePro4(Board board){
         boardService.write(board);
-        //System.out.println(board.getTitle());
-        //System.out.println("제목 : "+title);
-        //System.out.println("내용 : "+content);
-        return "";
+        //return "";
+        return "redirect:/board/list";
     }
 
     @GetMapping("/board/list")  //http://localhost:8080/board/list
@@ -59,9 +56,8 @@ public class BoardController {
         return "boardmodify";
     }
 
-    @PostMapping("/board/update/{id}")
-    //public String boardupdate(@PathVariable("id") Integer id, Board board){
-    public String boardUpdate(@PathVariable("id") Integer id, Board board){  //update u 대문자 아니면 수정이 안된다.
+    @PostMapping("/board/update3/{id}")
+    public String boardUpdate3(@PathVariable("id") Integer id, Board board){  //update u 대문자 아니면 수정이 안된다.
 
         Board boardTemp = boardService.boardView(id);  //기존 내용 가지고 오기
         boardTemp.setTitle(board.getTitle()); //새로입력한값을 덮어씌우기
