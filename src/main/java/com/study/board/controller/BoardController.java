@@ -23,10 +23,13 @@ public class BoardController {
     }
 
     @PostMapping("/board/writePro4")
-    public String boardWritePro4(Board board){
+    public String boardWritePro4(Board board,Model model){
         boardService.write(board);
-        //return "";
-        return "redirect:/board/list";
+
+        model.addAttribute("message", "글 작성이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/list");
+        return "message";
+        //return "redirect:/board/list";
     }
 
     @GetMapping("/board/list")  //http://localhost:8080/board/list
