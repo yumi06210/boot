@@ -18,6 +18,9 @@ public class Board {
     private String title;
     private String content;
     private String time;
-    //private String test;
+
+
+    private String filename;  //저장컬럼 추가
+    private String filepath;  //저장컬럼 추가
 
 }

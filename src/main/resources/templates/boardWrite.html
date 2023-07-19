@@ -24,10 +24,13 @@
 <body>
     <div class="layout">
 
-        <form action="/board/writePro4" method="post">
+        <form action="/board/writePro4" method="post" enctype="multipart/form-data">
             <input name ="title" type="text">
             <textarea name="content"></textarea>
-            <textarea name="time"></textarea>
+
+            <input type="file" name="file" id="file">
+            
+<!--            <textarea name="time"></textarea>-->
             <button type="submit">작성</button>
         </form>
     </div>

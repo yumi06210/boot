@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 public class BoardController {
@@ -23,8 +26,8 @@ public class BoardController {
     }
 
     @PostMapping("/board/writePro4")
-    public String boardWritePro4(Board board,Model model){
-        boardService.write(board);
+    public String boardWritePro4(Board board, Model model, MultipartFile file) throws Exception{
+        boardService.write(board, file);
 
         model.addAttribute("message", "글 작성이 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
@@ -64,13 +67,13 @@ public class BoardController {
     }
 
     @PostMapping("/board/update3/{id}")
-    public String boardUpdate3(@PathVariable("id") Integer id, Board board, Model model){  //update u 대문자 아니면 수정이 안된다.
+    public String boardUpdate3(@PathVariable("id") Integer id, Board board, Model model, MultipartFile file) throws Exception {  //update u 대문자 아니면 수정이 안된다.
 
         Board boardTemp = boardService.boardView(id);  //기존 내용 가지고 오기
         boardTemp.setTitle(board.getTitle()); //새로입력한값을 덮어씌우기
         boardTemp.setContent(board.getContent()); //새로입력한값을 덮어씌우기
 
-        boardService.write(boardTemp);  //이거 빠져서 update 안된거였음
+        boardService.write(boardTemp, file);  //이거 빠져서 update 안된거였음
 
         model.addAttribute("message", "글 수정이 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
