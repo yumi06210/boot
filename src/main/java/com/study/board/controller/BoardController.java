@@ -26,8 +26,11 @@ public class BoardController {
     }
 
     @PostMapping("/board/writePro4")
-    public String boardWritePro4(Board board, Model model, MultipartFile file) throws Exception{
-        boardService.write(board, file);
+
+    public String boardWritePro4(Board board, Model model) throws Exception{
+    //public String boardWritePro4(Board board, Model model, MultipartFile file) throws Exception{
+        //boardService.write(board, file);
+        boardService.write(board);
 
         model.addAttribute("message", "글 작성이 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
@@ -73,7 +76,7 @@ public class BoardController {
         boardTemp.setTitle(board.getTitle()); //새로입력한값을 덮어씌우기
         boardTemp.setContent(board.getContent()); //새로입력한값을 덮어씌우기
 
-        boardService.write(boardTemp, file);  //이거 빠져서 update 안된거였음
+        boardService.write(boardTemp);  //이거 빠져서 update 안된거였음
 
         model.addAttribute("message", "글 수정이 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
