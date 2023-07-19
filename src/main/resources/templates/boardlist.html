@@ -35,10 +35,10 @@
     </table>
 
 
-    <th:block th:each="page : ${#number.sequence(startPage, endPage)}">
+    <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
 
-      <a th:if="{page != nowPage}" th:href = "@{/board/list(page-1)}}" th:text="${page}"></a>
-      <strong th:if="{page == nowPage}" th:href ="${page}" style="color :red" th:text="${page}"></strong>
+      <a th:if="${page != nowPage}" th:href = "@{/board/list(page = ${page-1})}" th:text="${page}"></a>
+      <strong th:if="${page == nowPage}" th:text ="${page}" style="color :red" ></strong>
     </th:block>
   </div>
 </body>
