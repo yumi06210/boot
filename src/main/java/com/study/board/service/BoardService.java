@@ -24,7 +24,7 @@ public class BoardService {
         
         String fileName = uuid + "_" + file.getOriginalFilename(); 
 
-        File saveFile =  new File(projectPath, "fileName"); // file 을 생성해서 projectPath 경로에  fileName 이름으로 담는다.
+        File saveFile =  new File(projectPath, fileName); // file 을 생성해서 projectPath 경로에  fileName 이름으로 담는다.
         
         file.transferTo(saveFile);
 
