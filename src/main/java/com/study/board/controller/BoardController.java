@@ -4,6 +4,10 @@ import com.study.board.controller.entity.Board;
 import com.study.board.service.BoardService;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +32,7 @@ public class BoardController {
     @PostMapping("/board/writePro4")
 
     public String boardWritePro4(Board board, Model model) throws Exception{
-    //public String boardWritePro4(Board board, Model model, MultipartFile file) throws Exception{
+    //public String boardWritePro4(Board board, Model model, MultipartFile file) throws Exception{  //이걸 넣으면 파일첨부가 되지만 수정이 안되는데?
         //boardService.write(board, file);
         boardService.write(board);
 
@@ -39,8 +43,23 @@ public class BoardController {
     }
 
     @GetMapping("/board/list")  //http://localhost:8080/board/list
-    public String boardList(Model model){
-        model.addAttribute("list", boardService.boardList());
+    public String boardList(Model model, @PageableDefault(page = 0, size = 10, sort="id", direction = Sort.Direction.DESC) Pageable pageable){
+
+
+        Page<Board> list = boardService.boardList(pageable);
+
+        int nowPage = list.getPageable().getPageNumber()+1; //페이지는 0에서 시작하므로 더하기 1
+        int startPage = Math.max(nowPage - 4, 1);
+        int endPage = Math.min(nowPage + 5, list.getTotalPages());
+
+        //페이지 넘겨주기
+        model.addAttribute("list", list);
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+
+        model.addAttribute("list", boardService.boardList(pageable));
         return "boardlist";
     }
 

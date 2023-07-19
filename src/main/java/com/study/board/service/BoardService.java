@@ -4,6 +4,8 @@ import com.study.board.controller.entity.Board;
 //import com.study.board.entity.Board;
 import com.study.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,8 +42,8 @@ public class BoardService {
     //return 이 없을때 void 사용
     
     //게시글 리스트
-    public List<Board> boardList(){
-        return boardRepository.findAll();  //리턴받은 모든 값을 반환
+    public Page<Board> boardList(Pageable pageable){
+        return boardRepository.findAll(pageable);  //리턴받은 모든 값을 반환
     }
 
     //특정게시글 불러오기
