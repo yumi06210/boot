@@ -46,6 +46,18 @@ public class BoardService {
         return boardRepository.findAll(pageable);  //리턴받은 모든 값을 반환
     }
 
+
+    //검색
+    public Page<Board> boardSearchList(String searchKeyword, Pageable pageable){
+        return boardRepository.findByTitleContaining(searchKeyword, pageable);
+    }
+/*
+    JPA Repository
+            findBy(컬럼이름) : 컬럼에서 키워드를 넣어서 찾겠다.
+     findBy(컬럼이름)Containing : 컬럼에서 키워드가 포함된 것을 찾겠다.
+
+*/
+
     //특정게시글 불러오기
     public Board boardView(Integer id){
         return boardRepository.findById(id).get();
